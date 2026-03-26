@@ -41,7 +41,58 @@
 ### Step 14: 
   Stop
 # Program:
+#include <stdio.h>
+
+void validateDate()     // function without parameters and without return value
+{
+    int dd, mm, yy;
+
+    printf("Enter date (DD/MM/YYYY): ");
+    scanf("%d/%d/%d", &dd, &mm, &yy);
+
+    // Check year
+    if (yy < 1900 || yy > 9999) {
+        printf("Year is not valid");
+        return;
+    }
+
+    // Check month
+    if (mm < 1 || mm > 12) {
+        printf("Month is not valid");
+        return;
+    }
+
+    // Check day based on month
+    if (mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12) {
+        if (dd >= 1 && dd <= 31)
+            printf("Date is valid");
+        else
+            printf("Day is not valid");
+    }
+    else if (mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+        if (dd >= 1 && dd <= 30)
+            printf("Date is valid");
+        else
+            printf("Day is not valid");
+    }
+    else {   // February
+        // Leap year check
+        int leap = (yy % 400 == 0) || (yy % 4 == 0 && yy % 100 != 0);
+
+        if ((dd >= 1 && dd <= 28) || (dd == 29 && leap))
+            printf("Date is valid");
+        else
+            printf("Day is not valid");
+    }
+}
+
+int main() {
+    validateDate();   // calling the function
+    return 0;
+}
 # Output:
+<img width="469" height="167" alt="image" src="https://github.com/user-attachments/assets/4fff93b7-ca22-4333-8dd3-a51b513fc5d9" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -89,7 +140,42 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 13: 
   Stop
 # Program:
+#include <stdio.h>
+
+int max(int a, int b)   // function to find maximum
+{
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+
+int min(int a, int b)   // function to find minimum
+{
+    if (a < b)
+        return a;
+    else
+        return b;
+}
+
+int main()
+{
+    int num1, num2, maximum, minimum;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &num1, &num2);
+
+    maximum = max(num1, num2);   // calling max function
+    minimum = min(num1, num2);   // calling min function
+
+    printf("Maximum = %d\n", maximum);
+    printf("Minimum = %d\n", minimum);
+
+    return 0;
+}
 # Output:
+<img width="525" height="195" alt="image" src="https://github.com/user-attachments/assets/bef66ee4-f30e-4e75-939a-4df6be9614de" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -137,7 +223,48 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11: 
  Stop
 # Program:
+#include <stdio.h>
+
+float celtof();   // Function to convert Celsius to Fahrenheit
+float ftocel();   // Function to convert Fahrenheit to Celsius
+
+int main()
+{
+    float F, C;
+
+    F = celtof();      // Convert Celsius to Fahrenheit
+    printf("Temperature in Fahrenheit = %.2f\n", F);
+
+    C = ftocel();      // Convert Fahrenheit to Celsius
+    printf("Temperature in Celsius = %.2f\n", C);
+
+    return 0;
+}
+
+float celtof()
+{
+    float C, F;
+    printf("Enter the temperature in Celsius: ");
+    scanf("%f", &C);
+
+    F = (C * 9 / 5) + 32;   // Conversion formula
+
+    return F;              // Return Fahrenheit value
+}
+
+float ftocel()
+{
+    float f, celsius;
+    printf("Enter the temperature in Fahrenheit: ");
+    scanf("%f", &f);
+
+    celsius = (f - 32) * 5 / 9;   // Conversion formula
+
+    return celsius;               // Return Celsius value
+}
 # Output:
+<img width="840" height="218" alt="image" src="https://github.com/user-attachments/assets/64bec0e7-1a4c-4c5c-b5d7-df253802eef0" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -185,7 +312,62 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 7: 
   Stop
 # Program:
+#include <stdio.h>
+
+#define R 4
+#define C 4
+
+void spiralPrint(int m, int n, int a[R][C])
+{
+    int k = 0, l = 0;
+
+    while (k < m && l < n)
+    {
+        // Print top row
+        for (int i = l; i < n; i++)
+            printf("%d ", a[k][i]);
+        k++;
+
+        // Print right column
+        for (int i = k; i < m; i++)
+            printf("%d ", a[i][n-1]);
+        n--;
+
+        // Print bottom row
+        if (k < m)
+        {
+            for (int i = n-1; i >= l; i--)
+                printf("%d ", a[m-1][i]);
+            m--;
+        }
+
+        // Print left column
+        if (l < n)
+        {
+            for (int i = m-1; i >= k; i--)
+                printf("%d ", a[i][l]);
+            l++;
+        }
+    }
+}
+
+int main()
+{
+    int a[R][C] = {
+        {1,  2,  3,  4},
+        {5,  6,  7,  8},
+        {9, 10, 11, 12},
+        {13,14, 15,16}
+    };
+
+    printf("Spiral Order: ");
+    spiralPrint(R, C, a);
+
+    return 0;
+}
 # Output:
+<img width="728" height="122" alt="image" src="https://github.com/user-attachments/assets/f79f92de-410b-4388-a058-bebf3a701066" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -220,7 +402,48 @@ To build a C program to convert a string as described above, using a user-define
 ### Step 6: 
  Stop
 # Program:
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void convertFirstCLastC(char str[])
+{
+    int len = strlen(str);
+
+    // Convert first character
+    str[0] = toupper(str[0]);
+
+    // Convert characters before and after spaces
+    for (int i = 1; i < len - 1; i++)
+    {
+        if (str[i] == ' ')
+        {
+            str[i - 1] = toupper(str[i - 1]);
+            str[i + 1] = toupper(str[i + 1]);
+        }
+    }
+
+    // Convert last character
+    str[len - 1] = toupper(str[len - 1]);
+}
+
+int main()
+{
+    char str[100];
+
+    printf("Enter a string: ");
+    gets(str);   // For simple lab programs
+
+    convertFirstCLastC(str);
+
+    printf("Converted string: %s", str);
+
+    return 0;
+}
 # Output:
-# Result: 
+<img width="420" height="229" alt="image" src="https://github.com/user-attachments/assets/c1ac452e-d030-4a73-a6e4-69ea325a1163" />
+
+# Result:
+thus program is completed successfully
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
